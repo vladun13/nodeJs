@@ -1,0 +1,14 @@
+extends layout
+
+block main
+	h1 Suggestion
+	ul 
+			for suggestion in suggestions
+				li
+						a(href=`/suggestions/${suggestion.id}`)= suggestion.title
+						|  (#{suggestion.voters.size} Voters)
+						form(method='POST' action=`/suggestions/${suggestion.id}`)
+							button(type='submit')= suggestion.voters.has(username) ? 'Change vote' : 'Vote'
+	form(method='POST')
+		input(type='text' name='title' placeholder='Course name')
+		button(type='submit') Предложить

@@ -1,0 +1,17 @@
+extends layout
+
+block main
+	a(href='/suggestions') Back
+	h1= suggestion.title
+
+	h2 Проголосовавшие
+
+	ul
+		for voter in [...suggestion.voters]
+			li= voter
+
+	form(method='POST')
+		if suggestion.voters.has(username)
+				button(type='submit') Change vote
+		else
+			button(type='submit') Проголосовать
